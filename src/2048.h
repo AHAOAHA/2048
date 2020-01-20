@@ -1,18 +1,20 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include <cstdio>
+#include <ctime>
 #include <unistd.h>
 #include <termios.h>
 #include <vector>
-#include <stdint.h>
+#include <cstdint>
+#include <cstdlib>
+
+#include "2D_pos.h"
 
 class Game_2048{
     public:
         Game_2048() {}
         ~Game_2048() {}
 
-        bool Init(uint32_t row, uint32_t col);
-        void Echo();//打印函数
+        bool init(const size_t row, const size_t col);
+        void echo();//打印函数
         int Game();//游戏主体函数
         int IsDown();//判断游戏是否失败
         int IsFull();
@@ -26,18 +28,17 @@ class Game_2048{
         void CountFuncA();
         void CountFuncS();
         void CountFuncD();
-        void IsSeedW();
-        void IsSeedS();
-        void IsSeedA();
-        void IsSeedD();
-        void Proc();
+        bool IsSeedW();
+        bool IsSeedS();
+        bool IsSeedA();
+        bool IsSeedD();
+        void icon();
+        bool IsSeed(const char point);
+        bool is_outof_range(const Pos& pos);
 
     private:
-        int Flag_Seed;
-        uint32_t _col;
-        uint32_t _row;
-        std::vector<std::vector<int>> _map;
+        enum IS_SEED { SEED, NOT_SEED } _SEED;
+        std::vector<std::vector<int>>   _map;
 };
-
 
 
