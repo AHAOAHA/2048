@@ -35,24 +35,150 @@ void Game_2048::echo() {
 	}
 }
 
-// //判断是否满
+bool Game_2048::is_full() {
+	for (const auto & v : _map) {
+		for (const auto & e : v) {
+			if (e == 0) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
 
-// int Game_2048::IsFull() {
-// 	int i = 0;
-// 	int j = 0;
-// 	for (i = 0; i < _row; ++i)
-// 	{
-// 		for (j = 0; j < _col; ++j)
-// 		{
-// 			if (0 == _map[i][j])
-// 			{
-// 				return 0;
-// 			}
-// 		}
-// 	}
-// 	return 1;
+bool Game_2048::seed() {
+	srand((unsigned)time(NULL));
+	while(true) {
+		int row = rand() % (_map.size());
+		int col = rand() % (_map.back().size());
+		if (0 == _map[row][col]) {
+			_map[row][col] = 2;
+			break;
+		}
+	}
+	_NEED_SEED = IS_SEED::NOT_SEED;
+	return true;
+}
 
-// }
+bool Game_2048::input() {
+	system("stty raw");
+	char ch = getchar();
+  	system("stty -raw");
+	switch (ch) {
+		case 'w':
+		case 'W':
+			_DIRECT = DIRECT::UP;
+			break;
+		case 'a':
+		case 'A':
+			_DIRECT = DIRECT::LEFT;
+			break;
+		case 's':
+		case 'S':
+			_DIRECT = DIRECT::DOWN;
+			break;
+		case 'd':
+		case 'D':
+			_DIRECT = DIRECT::RIGHT;
+			break;
+		default:
+			break;
+	}
+	return true;
+}
+
+bool Game_2048::range_row() {
+	// left --> right
+	for (Pos row_pos; !is_outof_range(row_pos); row_pos = row_pos.right()) {
+		if (_DIRECT == DIRECT::DOWN) {
+			// up --> down
+			Pos first = row_pos, second = row_pos;
+			while (!is_outof_range(first) && !is_outof_range(second)) {
+				while(true) {
+					if (is_outof_range(first)) {
+						break;
+					}
+					if (0 != at(first)) {
+						break;
+					}
+					first = first.down();
+				}
+
+				second = first.down();
+				while(true) {
+					if (is_outof_range(second)) {
+						break;
+					}
+					if (0 != at(second)) {
+						break;
+					}
+					second = second.down();
+				}
+				if (!is_outof_range(first) && !is_outof_range(second)) {
+					if (at(first) == at(second)) {
+						at(first) *= 2;
+						at(second) = 0;
+						first = second.down();
+					}
+					else {
+						first = second;
+					}
+				}
+			}
+		}
+		else if (_DIRECT == DIRECT::UP) {
+
+		}
+		else {
+			//TODO
+		}
+	}
+	return true;
+}
+
+bool Game_2048::range_col() {
+	return true;
+}
+
+bool Game_2048::move_map() {
+	// up down 列遍历
+	switch (_DIRECT) {
+		case DIRECT::UP:
+		case DIRECT::DOWN:
+			range_row();
+			break;
+
+		case DIRECT::LEFT:
+		case DIRECT::RIGHT:
+			range_col();
+			break;
+		default:
+			// TODO
+			break;
+	}
+	// left right 行遍历
+	_DIRECT = DIRECT::UNKNOWN;
+	return true;
+}
+
+bool Game_2048::run() {
+	//icon();
+	while(!is_full()) {
+		if (is_need_seed()) {
+			seed();
+		}
+		echo();
+		input();
+		move_map();
+	}
+}
+
+bool Game_2048::is_need_seed() {
+	if (_NEED_SEED == IS_SEED::SEED) {
+		return true;
+	}
+	return false;
+}
 // //判断是否失败 返回0表示未失败 返回1表示失败
 // int Game_2048::IsDown() {
 //   int row = 0;
@@ -539,6 +665,14 @@ void Game_2048::echo() {
 // 	return 0;
 // }
 
+int& Game_2048::at(size_t row, size_t col) {
+	return _map[row][col];
+}
+
+int& Game_2048::at(const Pos& pos) {
+	return _map[pos.row()][pos.col()];
+}
+
 bool Game_2048::init(const size_t row, const size_t col) {
 	for (int i = 0; i < row; ++i) {
 		_map.push_back(std::vector<int>());
@@ -546,6 +680,8 @@ bool Game_2048::init(const size_t row, const size_t col) {
 			_map.back().push_back(0);
 		}
 	}
+	_NEED_SEED = IS_SEED::SEED;
+	_DIRECT = DIRECT::UNKNOWN;
 }
 
 bool Game_2048::is_outof_range(const Pos &pos) {

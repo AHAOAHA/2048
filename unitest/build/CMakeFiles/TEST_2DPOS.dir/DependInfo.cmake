@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ahaoozhang/myspace/dev_code/2048/src/2048.cpp" "/home/ahaoozhang/myspace/dev_code/2048/unitest/build/CMakeFiles/TEST_2DPOS.dir/home/ahaoozhang/myspace/dev_code/2048/src/2048.cpp.o"
-  "/home/ahaoozhang/myspace/dev_code/2048/src/2D_pos.cpp" "/home/ahaoozhang/myspace/dev_code/2048/unitest/build/CMakeFiles/TEST_2DPOS.dir/home/ahaoozhang/myspace/dev_code/2048/src/2D_pos.cpp.o"
-  "/home/ahaoozhang/myspace/dev_code/2048/unitest/test_2dpos.cpp" "/home/ahaoozhang/myspace/dev_code/2048/unitest/build/CMakeFiles/TEST_2DPOS.dir/test_2dpos.cpp.o"
+  "/home/ahaoozhang/dev_code/2048/src/2048.cpp" "/home/ahaoozhang/dev_code/2048/unitest/build/CMakeFiles/TEST_2DPOS.dir/home/ahaoozhang/dev_code/2048/src/2048.cpp.o"
+  "/home/ahaoozhang/dev_code/2048/src/2D_pos.cpp" "/home/ahaoozhang/dev_code/2048/unitest/build/CMakeFiles/TEST_2DPOS.dir/home/ahaoozhang/dev_code/2048/src/2D_pos.cpp.o"
+  "/home/ahaoozhang/dev_code/2048/unitest/test_2dpos.cpp" "/home/ahaoozhang/dev_code/2048/unitest/build/CMakeFiles/TEST_2DPOS.dir/test_2dpos.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

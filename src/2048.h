@@ -1,3 +1,5 @@
+#pragma once
+
 #include <cstdio>
 #include <ctime>
 #include <unistd.h>
@@ -14,31 +16,26 @@ class Game_2048{
         ~Game_2048() {}
 
         bool init(const size_t row, const size_t col);
-        void echo();//打印函数
-        int Game();//游戏主体函数
-        int IsDown();//判断游戏是否失败
-        int IsFull();
-        void Seed();//播撒种子
-        void MoveMap();//移动游戏元素
-        void MovePointW();
-        void MovePointS();
-        void MovePointA();
-        void MovePointD();
-        void CountFuncW();
-        void CountFuncA();
-        void CountFuncS();
-        void CountFuncD();
-        bool IsSeedW();
-        bool IsSeedS();
-        bool IsSeedA();
-        bool IsSeedD();
-        void icon();
-        bool IsSeed(const char point);
+        bool run();//游戏主体函数
         bool is_outof_range(const Pos& pos);
+        int& at(size_t row, size_t col);
+        int& at(const Pos& pos);
 
     private:
-        enum IS_SEED { SEED, NOT_SEED } _SEED;
-        std::vector<std::vector<int>>   _map;
+        void echo();//打印函数
+        bool is_full();
+        bool seed();//播撒种子
+        void icon();
+        bool is_need_seed();
+        bool input();
+        bool move_map();
+        bool range_row();
+        bool range_col();
+
+    private:
+        enum IS_SEED { SEED, NOT_SEED }                     _NEED_SEED;
+        enum DIRECT {UP, DOWN, LEFT, RIGHT, UNKNOWN}        _DIRECT;
+        std::vector<std::vector<int>>                       _map;
 };
 
 

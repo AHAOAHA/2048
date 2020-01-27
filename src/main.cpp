@@ -2,7 +2,7 @@
 
 int main() {
 	Game_2048 g;
-	g.Init(4, 4);
-	g.Game();
+	g.init(4, 4);
+	g.run();
 	return 0;
 }

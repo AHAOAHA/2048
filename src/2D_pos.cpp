@@ -10,13 +10,13 @@
 
 const Pos Pos::up() {
     Pos pos(*this);
-    pos._row += 1;
+    pos._row -= 1;
 
     return pos;
 }
 const Pos Pos::down() {
     Pos pos(*this);
-    pos._row -= 1;
+    pos._row += 1;
 
     return pos;
 
@@ -30,7 +30,7 @@ const Pos Pos::left() {
 }
 const Pos Pos::right() {
     Pos pos(*this);
-    pos._col +=1;
+    pos._col += 1;
 
     return pos;
 }

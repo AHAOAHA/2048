@@ -36,7 +36,6 @@ struct Pos {
         const size_t row() const { return _row; }
         const size_t col() const { return _col; }
 
-
     private:
         size_t _row;
         size_t _col;

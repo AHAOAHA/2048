@@ -1,10 +1,34 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
 #IncludeRegexComplain: ^$
 
 #IncludeRegexTransform: 
+
+../../src/2048.h
+cstdio
+-
+ctime
+-
+unistd.h
+-
+termios.h
+-
+vector
+-
+cstdint
+-
+cstdlib
+-
+2D_pos.h
+../../src/2D_pos.h
+
+../../src/2D_pos.h
+cstdint
+-
+cstdlib
+-
 
 ../../third_party/gtest/include/gtest/gtest-death-test.h
 gtest/internal/gtest-death-test-internal.h
@@ -300,45 +324,11 @@ cxxabi.h
 acxx_demangle.h
 -
 
-/home/ahaoozhang/myspace/dev_code/2048/src/2048.cpp
-sstream
--
-iostream
--
-2048.h
-/home/ahaoozhang/myspace/dev_code/2048/src/2048.h
-2D_pos.h
-/home/ahaoozhang/myspace/dev_code/2048/src/2D_pos.h
-
-/home/ahaoozhang/myspace/dev_code/2048/src/2048.h
-cstdio
--
-ctime
--
-unistd.h
--
-termios.h
+/home/ahaoozhang/dev_code/2048/unitest/test_2dpos.cpp
+gtest/gtest.h
 -
 vector
 -
-cstdint
--
-cstdlib
--
-2D_pos.h
-/home/ahaoozhang/myspace/dev_code/2048/src/2D_pos.h
-
-/home/ahaoozhang/myspace/dev_code/2048/src/2D_pos.cpp
-2D_pos.h
-/home/ahaoozhang/myspace/dev_code/2048/src/2D_pos.h
-
-/home/ahaoozhang/myspace/dev_code/2048/src/2D_pos.h
-cstdint
--
-cstdlib
--
-
-/home/ahaoozhang/myspace/dev_code/2048/unitest/test_2dpos.cpp
-gtest/gtest.h
--
+2048.h
+/home/ahaoozhang/dev_code/2048/unitest/2048.h
 
