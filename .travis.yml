@@ -1,0 +1,12 @@
+language: cpp
+
+cpp: "11"
+
+install:
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
+
+script:
+  - echo "ok"
